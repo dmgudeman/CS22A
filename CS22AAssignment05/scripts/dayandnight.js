@@ -1,3 +1,6 @@
+// CS 22A Assignment 5
+// David Gudeman
+
 'use strict'
 var myEmoticon = document.getElementById("emoticon");
 var myTime = document.getElementById("time");
@@ -16,55 +19,49 @@ var intervalHandle = setInterval(changeEmoticon, 1000);
 var intervalHandleTime = setInterval(increment, 1000);
 var intervalHandlePeriod = setInterval(periodUpdate, 1000);
 
+// function to update the AM/PM element every 12 sec
 function periodUpdate(){
-   
    if (periodCounter < 12){
-            periodIndex = 0
-            myPeriod.textContent = periodArray[periodIndex];
-            ++periodCounter;
+      periodIndex = 0
+      myPeriod.textContent = periodArray[periodIndex];
+      ++periodCounter;
    } else if(periodCounter < 24){
-            periodIndex = 1;
-            myPeriod.textContent = periodArray[periodIndex];
-            ++periodCounter;
+      periodIndex = 1;
+      myPeriod.textContent = periodArray[periodIndex];
+      ++periodCounter;
    } else {
-            periodIndex = 0
-            myPeriod.textContent = periodArray[periodIndex];
-            periodCounter = 1;
+      periodIndex = 0
+      myPeriod.textContent = periodArray[periodIndex];
+      periodCounter = 1;
    }
 }
-
-
+// cycles through hours and updates "time" Element
 function increment() { 
   if (hour <12){
-  hour = ++hour;
-  myTime.textContent = hour;
-  
-  } else {
-    hour = 0;
-    increment();
-  }
+      hour = ++hour;
+      myTime.textContent = hour;
+   } else {
+      hour = 0;
+      increment();
+   }
 }
-
+// toggles the emoticon every 12 hours
 function changeEmoticon(){
-           
-        //myEmoticon.setAttribute("src", emoticonArray[emoticonIndex]);
-        
-        
     if (emoCounter < 12) { 
-            emoticonIndex = 0;
-            myEmoticon.setAttribute("src", emoticonArray[emoticonIndex]);
-            emoCounter++;
+      emoticonIndex = 0;
+      myEmoticon.setAttribute("src", emoticonArray[emoticonIndex]);
+      emoCounter++;
     }else if (emoCounter < 24) {
-            emoticonIndex = 1;
-            myEmoticon.setAttribute("src", emoticonArray[emoticonIndex]);
-            emoCounter++;
+      emoticonIndex = 1;
+      myEmoticon.setAttribute("src", emoticonArray[emoticonIndex]);
+      emoCounter++;
     }else{
-            emoticonIndex = 0;
-            myEmoticon.setAttribute("src", emoticonArray[emoticonIndex]);
-            emoCounter = 1;       
+      emoticonIndex = 0;
+      myEmoticon.setAttribute("src", emoticonArray[emoticonIndex]);
+      emoCounter = 1;       
     }
 }
-
+// method to stop the program running by clicking on emoticon
 myEmoticon.onclick = function(){
     clearInterval(intervalHandle);
     clearInterval(intervalHandleTime);
